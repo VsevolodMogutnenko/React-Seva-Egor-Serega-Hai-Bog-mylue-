@@ -1,23 +1,26 @@
 import { useState, useEffect } from 'react'
 import { getImages } from './services/getImages'
+import { SearchForm } from './components/SearchForm/SearchForm'
 
 function App() {
   const [name, setName] = useState('')
   const [pageNumber, setPageNumber] = useState(1)
   const [response, setResponse] = useState([])
+  const [isShowButton, setIsShowButton] = useState(false)
+
   useEffect(() => {
     if(name !== '') {
       getImages(name, pageNumber).then((data) => {setResponse((prev) => [...prev, ...data.hits])})
+      if(response.length !== 0) {
+        setIsShowButton(true)
+      }
     }
   },[name, pageNumber])
 
-  const handleInputName = (event) => {
-    const {value} = event.target
+  const handleSubmit = (value) => {
     setName(value)
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
+    setIsShowButton(false)
+    setResponse([])
   }
 
   const handlePageNumber = () => {
@@ -26,10 +29,7 @@ function App() {
 
   return (
     <>
-    <form onSubmit={handleSubmit}>
-      <input type='text' placeholder='Search image' value={name} onChange={handleInputName}/>
-      <button type='submit'>Search</button>
-    </form>
+    <SearchForm handleSubmit={handleSubmit} />
     <ul>
       {response?.map(({id, tags, webformatURL, likes, downloads, comments, views}) => <li key={id}>
         <img src={webformatURL} />
@@ -40,7 +40,7 @@ function App() {
         <p>tags :{tags}</p>
       </li>)}
     </ul>
-    <button type='button' onClick={handlePageNumber}>Load more</button>
+    {isShowButton&&<button type='button' onClick={handlePageNumber}>Load more</button>}
     </>
   )
 }

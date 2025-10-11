@@ -1,0 +1,29 @@
+.form {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 100px auto 0 auto;
+}
+
+.input, .submit {
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 24px;
+    padding: 20px;
+    border-radius: 15px;
+    transition: .3s;
+    font-family: inherit;
+    font-weight: 400;
+}
+
+.input:hover, .submit:hover {
+    border: 2px solid #999;
+    color: #999;
+}
+
+.input::placeholder {
+    color: #fff;
+    font-size: 24px;
+}
