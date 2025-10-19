@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
-import { getImages } from './services/getImages'
-import { SearchForm } from './components/SearchForm/SearchForm'
+import { getImages } from '../../services/getImages'
+import { SearchForm } from '../SearchForm/SearchForm'
+import { ListItem } from '../ListItem/ListItem'
+import styles from './app.module.css'
 
 function App() {
   const [name, setName] = useState('')
@@ -10,10 +12,11 @@ function App() {
 
   useEffect(() => {
     if(name !== '') {
-      getImages(name, pageNumber).then((data) => {setResponse((prev) => [...prev, ...data.hits])})
-      if(response.length !== 0) {
-        setIsShowButton(true)
-      }
+      getImages(name, pageNumber).then((data) => {
+        if(data?.hits.length !== 0) {
+          setIsShowButton(true)
+        }
+        setResponse((prev) => [...prev, ...data.hits])})
     }
   },[name, pageNumber])
 
@@ -30,15 +33,8 @@ function App() {
   return (
     <>
     <SearchForm handleSubmit={handleSubmit} />
-    <ul>
-      {response?.map(({id, tags, webformatURL, likes, downloads, comments, views}) => <li key={id}>
-        <img src={webformatURL} />
-        <p>likes :{likes}</p>
-        <p>downloads :{downloads}</p>
-        <p>views :{views}</p>
-        <p>comments :{comments}</p>
-        <p>tags :{tags}</p>
-      </li>)}
+    <ul className={styles.ul}>
+      {response?.map(({id, tags, webformatURL, likes, downloads, comments, views, largeImageURL}) => <ListItem key={id} webformatURL={webformatURL} likes={likes} downloads={downloads} views={views} comments={comments} tags={tags} largeImageURL={largeImageURL}/>)}
     </ul>
     {isShowButton&&<button type='button' onClick={handlePageNumber}>Load more</button>}
     </>
