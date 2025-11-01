@@ -21,7 +21,31 @@
 }
 
 .p {
+    display: flex; 
+    align-items: center;
+    gap: 6px;
     color: white;
     font-size: 24px;
     margin: 10px 0;
+}
+
+.likeIcon {
+  display: flex;
+  align-items: center;
+  animation: pop 0.8s ease-in-out infinite;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.4);
+  }
+  60% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

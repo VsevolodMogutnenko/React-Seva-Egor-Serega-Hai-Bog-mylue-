@@ -5,7 +5,7 @@
     top: 0;
     left: 0;
     z-index: 20;
-    background-color: #a0a0a0;
+    background-color: #000000B3;
 }
 
 .modal {
@@ -13,18 +13,28 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 300px;
-    max-height: auto;
     background-color: white;
+
+    img {
+        display: block;
+    }
 }
 
 .button {
     position: absolute;
     top: 5px;
     right: 5px;
-    background-color: grey;
+    color: white;
+    background-color: black;
     outline: none;
     cursor: pointer;
     border-radius: 15px;
-    border: 2px solid black;
+    border: 2px solid white;
+    transition: .5s;
+
+    &:hover {
+        border: 2px solid red;
+        color: red;
+        scale: 1.05;
+    }
 }
