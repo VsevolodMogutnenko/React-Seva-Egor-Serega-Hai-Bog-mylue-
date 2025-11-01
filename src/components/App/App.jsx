@@ -34,9 +34,9 @@ function App() {
     <>
     <SearchForm handleSubmit={handleSubmit} />
     <ul className={styles.ul}>
-      {response?.map(({id, tags, webformatURL, likes, downloads, comments, views, largeImageURL}) => <ListItem key={id} webformatURL={webformatURL} likes={likes} downloads={downloads} views={views} comments={comments} tags={tags} largeImageURL={largeImageURL}/>)}
+      {response?.map(({id, webformatURL, likes, downloads, comments, views, largeImageURL}) => <ListItem key={id} webformatURL={webformatURL} likes={likes} downloads={downloads} views={views} comments={comments} largeImageURL={largeImageURL}/>)}
     </ul>
-    {isShowButton&&<button type='button' onClick={handlePageNumber}>Load more</button>}
+    {isShowButton&&<button type='button' onClick={handlePageNumber} className={styles.more}>Load more</button>}
     </>
   )
 }

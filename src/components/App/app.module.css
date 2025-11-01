@@ -6,3 +6,22 @@ ul {
     flex-wrap: wrap;
     margin: -30px -30px 0 0;
 }
+
+.more {
+    display: block;
+    margin: 70px auto;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    font-size: 24px;
+    padding: 20px;
+    border-radius: 15px;
+    transition: .3s;
+    font-family: inherit;
+    font-weight: 400;
+}
+
+.more:hover {
+    border: 2px solid #999;
+    color: #999;
+}

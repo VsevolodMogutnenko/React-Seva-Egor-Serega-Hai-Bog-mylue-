@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Modal } from '../Modal/Modal'
 import styles from './listItem.module.css'
 
-export const ListItem = ({webformatURL, likes, downloads, views, comments, tags, largeImageURL}) => {
+export const ListItem = ({webformatURL, likes, downloads, views, comments, largeImageURL}) => {
       const [isShowModal, setIsShowModal] = useState(false)
       // const handleShowModal = () => {
       //   setIsShowModal(true)
@@ -17,11 +17,12 @@ export const ListItem = ({webformatURL, likes, downloads, views, comments, tags,
       }
       return <> <li className={styles.li} onClick={toggleModal}>
           <img src={webformatURL} className={styles.img}/>
-          <p className={styles.p}>likes :{likes}</p>
-          <p className={styles.p}>downloads :{downloads}</p>
-          <p className={styles.p}>views :{views}</p>
-          <p className={styles.p}>comments :{comments}</p>
-          <p className={styles.p}>tags :{tags}</p>
+          <div className={styles.text}>
+            <p className={styles.p}>Likes: {likes}</p>
+            <p className={styles.p}>Downloads: {downloads}</p>
+            <p className={styles.p}>Views: {views}</p>
+            <p className={styles.p}>Comments: {comments}</p>
+          </div>
         </li>
         {isShowModal && <Modal toggleModal={toggleModal}><img src={largeImageURL}/></Modal>}
       </>
